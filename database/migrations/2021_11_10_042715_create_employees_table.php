@@ -17,7 +17,7 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->string('first_name',50);
             $table->string('last_name',50);
-            $table->timestamps('dob');
+            $table->date('dob');
             $table->double('basic_salary');
             $table->timestamps();
 

@@ -14,7 +14,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee/index');
+        $employees=Employee::all(); // static functions
+        return view('employee/index',compact('employees'));
         //
     }
 
@@ -39,22 +40,22 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->all(); // view data
-        $fname = $request->input('fname');
-        $lname = $request->input('lname');
+        $data = $request->all(); // view data //instance method
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
         $dob = $request->input('dob');
         $basic_salary = $request->input('basic_salary');
 
 
         $employee = new Employee();
 
-        $employee->first_name = $fname;
-        $employee->last_name = $lname;
+        $employee->first_name = $first_name;
+        $employee->last_name = $last_name;
         $employee->dob = $dob;
         $employee->basic_salary = $basic_salary;
         $employee->save();
 
-        return " Employee Saved";
+        return view('employee/index');
     }
 
     /**
@@ -66,7 +67,8 @@ class EmployeeController extends Controller
     public function show($id)
     {
         //
-        return view('employee/show');
+        $employee=Employee::find($id);
+        return view('employee/show',compact('employee'));
     }
 
     /**
@@ -77,8 +79,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
-        return view('employee/edit');
+        $employee=Employee::find($id);
+        return view('employee/edit',compact('employee'));
     }
 
 
@@ -92,6 +94,21 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
+        $dob = $request->input('dob');
+        $basic_salary = $request->input('basic_salary');
+
+
+        $employee = Employee::find($id);
+
+        $employee->first_name = $first_name;
+        $employee->last_name = $last_name;
+        $employee->dob = $dob;
+        $employee->basic_salary = $basic_salary;
+        $employee->save();
+
+        return view('employee/index');
     }
 
     /**
@@ -103,5 +120,9 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+        $employee = Employee::find($id);
+        $employee->delete();
+        return view('employee/index');
+
     }
 }

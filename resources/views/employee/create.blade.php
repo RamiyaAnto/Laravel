@@ -4,10 +4,10 @@
 
     @csrf
     <label for="fname">First Name</label>
-    <input type ="text" name="fname" id="fname">
+    <input type ="text" name="first_name" id="first_name">
     <br>  <br>
     <label for="lname">Last Name</label>
-    <input type ="text" name="lname" id="lname">
+    <input type ="text" name="last_name" id="last_name">
     <br>  <br>
     <label for="dob">Date of Birth</label>
     <input type ="date" name="dob" id="dob">  
